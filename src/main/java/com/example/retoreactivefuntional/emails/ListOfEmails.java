@@ -1,5 +1,6 @@
 package com.example.retoreactivefuntional.emails;
 
+import org.springframework.boot.SpringApplication;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -64,7 +65,8 @@ public Flux<Comparable<? extends Comparable<?>>> comprobarCorreosCorrectos(){
     });
 }
 
-public Mono<Long> cantidadDeCorreos(){
+
+    public Mono<Long> cantidadDeCorreos(){
 
         return this.listaEmails.count();
 }
@@ -83,9 +85,22 @@ public Flux<Long> cantidadDeCorreosDominio(){
 
 }
 
+public Flux<Email>cambiarEstadoDeEnviado(){
+        return listaEmails.map(email -> {
+           if(email.getEnviado())email.setEnviado(false);
+            return email;
+        });
+}
 
+    public static void main(String[] args) {
 
-
+        SpringApplication.run(ListOfEmails.class, args);
+        ListOfEmails listOfEmails = new ListOfEmails();
+        System.out.println(listOfEmails.cantidadDeCorreos().block());
+        listOfEmails.cantidadDeCorreosDominio().toIterable().forEach(aLong -> System.out.println(aLong.longValue()));
+        listOfEmails.listasDeDominios().toIterable().forEach(email -> System.out.println(email.getCorreo()));
+        listOfEmails.comprobarCorreosCorrectos();
+    }
 
 
 

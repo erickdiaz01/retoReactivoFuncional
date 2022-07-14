@@ -3,11 +3,19 @@ package com.example.retoreactivefuntional.emails;
 public class Email implements Comparable<Email>{
 
     private final String correo;
-    private final Boolean enviado;
+    private  Boolean enviado;
 
-    public Email(String correo) {
+    public Email(String correo,Boolean enviado) {
         this.correo = correo;
-        enviado = false;
+        this.enviado=enviado;
+    }
+
+    public Boolean getEnviado() {
+        return enviado;
+    }
+
+    public void setEnviado(Boolean enviado) {
+        this.enviado = enviado;
     }
 
     public String getCorreo() {

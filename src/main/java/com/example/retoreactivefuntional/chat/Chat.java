@@ -1,9 +1,13 @@
 package com.example.retoreactivefuntional.chat;
 
+import org.springframework.boot.SpringApplication;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Chat {
@@ -51,6 +55,7 @@ return mensajeCambiado;    }
 return malasPalabras.contains(mensaje.toLowerCase())? "****":mensaje;
     }
     public static void main(String[] args) {
+        SpringApplication.run(Chat.class, args);
         Chat chat = new Chat();
         Scanner sc = new Scanner(System.in);
         String decision;
