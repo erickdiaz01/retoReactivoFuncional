@@ -1,5 +1,9 @@
 package com.example.retoreactivefuntional.emails;
 
+/**
+ * Clase que modela la entidad email para la solucion del ejercicio del manejo de la lista de correos electronicos,
+ * tiene como atributos la direccion de correo electronico y el estado de si le fue enviado o no algun correo
+ */
 public class Email implements Comparable<Email>{
 
     private final String correo;

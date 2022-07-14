@@ -10,6 +10,12 @@ import java.util.Scanner;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * Clase que representa la solucion al ejercicio reactivo del chat, tiene como atributos el nombre
+ * del usuario del chat y tambien un set de mensajes que son enviados por el usuario
+ * @author Erick Diaz
+ * @date 14-07-2022
+ */
 public class Chat {
     private final String usuario;
     private Flux<Mono<String>> busDeChat;
@@ -40,8 +46,12 @@ public class Chat {
         this.busDeChat = busDeChat;
     }
 
+    /**
+     * Funcion que realiza la accion de pedir el mensaje a 'enviar' por consola, llama a la funcion que cambia
+     * las malas palabras lo adiciona a la lista ya existente y devuelve el mensaje cambiado
+     * @return {Mono<String>}
+     */
     public Mono<String> mandarMensaje(){
-
         System.out.println("Envie un nuevo mensaje: ");
         String mensaje = sc.nextLine();
         List<String> mensajeEnviado = Arrays.stream(mensaje.split(" ")).collect(Collectors.toList());
@@ -50,6 +60,12 @@ public class Chat {
         setBusDeChat(this.busDeChat.concatWithValues(mensajeCambiado));
 return mensajeCambiado;    }
 
+    /**
+     * Compara las palabras del mensaje y verifica si lleva alguna mala palabra, cambia la mala palabra
+     * por '****'
+     * @param mensaje
+     * @return {String}
+     */
     public String cambiarMalasPalabras(String mensaje){
 
 return malasPalabras.contains(mensaje.toLowerCase())? "****":mensaje;

@@ -2,6 +2,9 @@ package com.example.retoreactivefuntional.emails;
 
 import java.util.List;
 
+/**
+ * Clase que almacena y representa la lista de correos a manejar
+ */
 public class DataUtil {
     private final List<Email> listaDeEmails = List.of(
             new Email("xvega19@gmail.com",true),
