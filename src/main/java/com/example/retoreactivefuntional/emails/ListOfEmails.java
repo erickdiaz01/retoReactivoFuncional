@@ -51,11 +51,13 @@ public Flux<Email> listasDeDominios(){
         Matcher mat = pat.matcher(email.getCorreo());
         return mat.matches();
     });
+
 return Flux.concat(listaDeDominioGmail,listaDeDominioOutlook,listaDeDominioHotmail);
 }
 
 public Flux<Comparable<? extends Comparable<?>>> comprobarCorreosCorrectos(){
-    return this.listaEmails.map(email -> {
+
+        return this.listaEmails.map(email -> {
         Pattern pat = Pattern.compile("^[\\w-]+(\\.[\\w-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
         Matcher mat = pat.matcher(email.getCorreo());
         return mat.matches()==true?email:false;
@@ -63,6 +65,7 @@ public Flux<Comparable<? extends Comparable<?>>> comprobarCorreosCorrectos(){
 }
 
 public Mono<Long> cantidadDeCorreos(){
+
         return this.listaEmails.count();
 }
 
@@ -76,7 +79,6 @@ public Flux<Long> cantidadDeCorreosDominio(){
     var cantidadCorreosConHotmail = this.listaEmails.map(email -> email.getCorreo()).filter(s ->
             s.contains(Dominio.HOTMAIL.domain)
     ).count();
-
     return Flux.concat(cantidadCorreosConGmail,cantidadCorreosConOutlook,cantidadCorreosConHotmail);
 
 }
